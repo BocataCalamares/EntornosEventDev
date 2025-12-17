@@ -4,12 +4,15 @@ import java.time.LocalDate;
 
 public class UtilidadValidacion {
     public static boolean esEmailValido(String email) {
-        if (email.contains("@") && !email.startsWith("@")) {
-            return true;
-        } else {
+        if (email == null || email.isEmpty()) {
             return false;
         }
+        // Lógica simple: debe contener '@' y después un '.'
+        int indiceArroba = email.indexOf('@');
+        int indicePunto = email.lastIndexOf('.');
+        return indiceArroba > 0 && indicePunto > indiceArroba;
     }
+
 
     public static boolean esPuntuacionValida(int puntuacion) {
         if (puntuacion > 5 || puntuacion < 0) {
